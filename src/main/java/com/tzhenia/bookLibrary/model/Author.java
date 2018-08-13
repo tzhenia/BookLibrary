@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @ToString
-public class Authors extends BaseEntity {
+public class Author extends BaseEntity {
 
     @Column(name = "name")
     private String name;
