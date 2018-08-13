@@ -27,5 +27,4 @@ public class Authors extends BaseEntity {
 
     @Column(name = "born")
     private String born;
-
 }
