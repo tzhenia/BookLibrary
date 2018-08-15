@@ -1,0 +1,12 @@
+.DS_Store
+.idea/
+.idea/*
+.mvn/
+/src/main/resources/application.properties
+/src/test/resources/application.properties
+/target
+/out
+*.class
+*.war
+*.jar
+*.ear
