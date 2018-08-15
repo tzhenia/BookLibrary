@@ -19,9 +19,9 @@ import javax.persistence.Table;
 @ToString
 public class AuthorBook extends BaseEntity {
 
-    @Column(name = "book-id")
+    @Column(name = "book_id")
     private Long bookId;
 
-    @Column(name = "author-id")
+    @Column(name = "author_id")
     private Long authorId;
 }
