@@ -84,4 +84,42 @@ With body (application/json):
     "published": "2000-12-31",
     "rating": "5"
 }
+
+AuthorBook
+-----------------------------------
+**To get all authors of books list**
+
+GET: http://localhost:9931/api/v1/authorbooks/ 
 ***
+
+**To get author of book by ID 1**
+
+GET: http://localhost:9931/api/v1/authorbooks/1
+***
+
+**To add a new author of book**
+
+POST: http://localhost:9931/api/v1/authorbooks/
+
+With body (application/json):
+{
+        "bookId": 31,
+        "authorId": 31
+}
+***
+
+**To delete author of book by ID 1**
+
+Delete: http://localhost:9931/api/v1/authorbooks/1
+***
+
+**To update author of book by ID 1**
+
+PUT: http://localhost:9931/api/v1/authorbooks/
+
+With body (application/json):
+{
+    "id": "1",
+    "bookId": 31,
+    "authorId": 31 
+}
