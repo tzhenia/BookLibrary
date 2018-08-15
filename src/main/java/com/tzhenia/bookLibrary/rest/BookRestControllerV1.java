@@ -79,12 +79,12 @@ public class BookRestControllerV1 {
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<List<Book>> getAllBooks() {
-        List<Book> Books = this.bookService.getAll();
+        List<Book> books = this.bookService.getAll();
 
-        if (Books.isEmpty()) {
+        if (books.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity<>(Books, HttpStatus.OK);
+        return new ResponseEntity<>(books, HttpStatus.OK);
     }
 }
