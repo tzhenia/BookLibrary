@@ -14,6 +14,7 @@ GET: http://localhost:9931/api/v1/authors/1
 ***
 
 **To add a new author**
+
 POST: http://localhost:9931/api/v1/authors/
 
 With body (application/json):
