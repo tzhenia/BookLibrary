@@ -17,29 +17,29 @@ import java.util.List;
 public class AuthorServiceImpl implements AuthorService {
 
     @Autowired
-    AuthorRepository customerRepository;
+    AuthorRepository authorRepository;
 
     @Override
     public Author getById(Long id) {
         log.info("IN AuthorServiceImpl getById {}", id);
-        return customerRepository.findOne(id);
+        return authorRepository.findOne(id);
     }
 
     @Override
     public void save(Author author) {
         log.info("IN AuthorServiceImpl save {}", author);
-        customerRepository.save(author);
+        authorRepository.save(author);
     }
 
     @Override
     public void delete(Long id) {
         log.info("IN AuthorServiceImpl delete {}", id);
-        customerRepository.delete(id);
+        authorRepository.delete(id);
     }
 
     @Override
     public List<Author> getAll() {
         log.info("IN AuthorServiceImpl getAll");
-        return customerRepository.findAll();
+        return authorRepository.findAll();
     }
 }

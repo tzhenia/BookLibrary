@@ -11,7 +11,7 @@ public interface AuthorService {
 
     Author getById(Long id);
 
-    void save(Author customer);
+    void save(Author author);
 
     void delete(Long id);
 
