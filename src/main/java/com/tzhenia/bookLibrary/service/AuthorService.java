@@ -1,6 +1,8 @@
 package com.tzhenia.bookLibrary.service;
 
 import com.tzhenia.bookLibrary.model.Author;
+
+import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -16,4 +18,6 @@ public interface AuthorService {
     void delete(Long id);
 
     List<Author> getAll();
+
+    List<Author> getAllByYear(byte year) throws ParseException;
 }
