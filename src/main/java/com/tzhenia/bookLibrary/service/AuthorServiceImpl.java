@@ -53,16 +53,16 @@ public class AuthorServiceImpl implements AuthorService {
 
         List<Author> authorList = authorRepository.findAll();
             for(Author mc : authorList) {
-                String sDate1 = mc.getBorn();
-                Date authorAge = new SimpleDateFormat("yyyy-MM-dd").parse(sDate1);
-                int age = calculateAge(authorAge);
+                String sBorn = mc.getBorn();
+                Date born = new SimpleDateFormat("yyyy-MM-dd").parse(sBorn);
+                int authorAge = calculateAge(born);
 
-                if (age <= year){
-                    System.out.println(age + " need to delete");
+                if (authorAge <= year){
+                    System.out.println(authorAge + " need to delete");
                 }
 
                 else {
-                    System.out.println(age);
+                    System.out.println(authorAge);
                 }
 
             }
