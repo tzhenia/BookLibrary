@@ -8,9 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Implementations of {@link AuthorService} interface.
@@ -52,27 +50,11 @@ public class AuthorServiceImpl implements AuthorService {
         log.info("IN AuthorServiceImpl getAllByYear {}", year);
 
         List<Author> authorList = authorRepository.findAll();
-            for(Author mc : authorList) {
-                String sBorn = mc.getBorn();
-                Date born = new SimpleDateFormat("yyyy-MM-dd").parse(sBorn);
-                int authorAge = calculateAge(born);
-
-                if (authorAge <= year){
-                    System.out.println(authorAge + " need to delete");
-                }
-
-                else {
-                    System.out.println(authorAge);
-                }
-
-            }
-
-        return authorList;
+        return findAuthorsOlderThan( authorList, year);
     }
 
 
-    private static Integer calculateAge(Date birthday)
-    {
+    private static Integer calculateAge(Date birthday) {
         Calendar dob = Calendar.getInstance();
         Calendar today = Calendar.getInstance();
 
@@ -85,5 +67,23 @@ public class AuthorServiceImpl implements AuthorService {
             age--;
         }
         return age;
+    }
+
+    private static List<Author> findAuthorsOlderThan(List<Author> authorList, byte year) throws ParseException{
+        log.info("IN AuthorServiceImpl findAuthorsOlderThan()");
+
+        for (Iterator<Author> iter = authorList.listIterator(); iter.hasNext(); ) {
+            Author a = iter.next();
+
+            String sBorn = a.getBorn();
+            Date born = new SimpleDateFormat("yyyy-MM-dd").parse(sBorn);
+            int authorAge = calculateAge(born);
+
+            if (authorAge <= year){
+                iter.remove();
+            }
+        }
+
+        return authorList;
     }
 }
