@@ -30,10 +30,10 @@ public class Author extends BaseEntity  implements Comparable<Author> {
 
 
     @Override
-    public int compareTo(Author u) {
-        if (getBorn() == null || u.getBorn() == null) {
+    public int compareTo(Author author) {
+        if (getBorn() == null || author.getBorn() == null) {
             return 0;
         }
-        return getBorn().compareTo(u.getBorn());
+        return getBorn().compareTo(author.getBorn());
     }
 }
