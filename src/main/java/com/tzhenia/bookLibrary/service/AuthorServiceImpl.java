@@ -84,6 +84,7 @@ public class AuthorServiceImpl implements AuthorService {
             }
         }
 
+        Collections.sort(authorList);
         return authorList;
     }
 }
