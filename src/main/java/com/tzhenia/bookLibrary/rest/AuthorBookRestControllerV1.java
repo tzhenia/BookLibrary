@@ -1,5 +1,8 @@
 package com.tzhenia.bookLibrary.rest;
 
+import com.tzhenia.bookLibrary.model.Author;
+import com.tzhenia.bookLibrary.repository.AuthorRepository;
+import lombok.extern.slf4j.Slf4j;
 import com.tzhenia.bookLibrary.model.AuthorBook;
 import com.tzhenia.bookLibrary.service.AuthorBookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,17 +15,23 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 /**
  * REST controller for {@link AuthorBook} connected requests
  */
 
+@Slf4j
 @RestController
 @RequestMapping("/api/v1/authorbooks/")
 public class AuthorBookRestControllerV1 {
 
     @Autowired
     private AuthorBookService authorBookService;
+
+    @Autowired
+    AuthorRepository authorRepository;
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<AuthorBook> getAuthorBook(@PathVariable("id") Long authorBookId) {
@@ -87,4 +96,58 @@ public class AuthorBookRestControllerV1 {
 
         return new ResponseEntity<>(authorBooks, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "find/out/author/which/has/most/books/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<Author>  findOutAuthorWhichHasMostBooks() {
+        log.info("IN AuthorBookRestControllerV1 findOutAuthorWhichHasMostBooks");
+
+        Long authorID = calculateNumberOfBooksByAuthor();
+        Author author = authorRepository.findOne(authorID);
+
+        if (author == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(author, HttpStatus.OK);
+   }
+
+   private Long calculateNumberOfBooksByAuthor(){
+       log.info("IN AuthorBookRestControllerV1 calculateNumberOfBooksByAuthor");
+
+       List<AuthorBook> allRecords = this.authorBookService.getAll();
+       HashMap<Long, Integer> uniqueRecords = new HashMap<Long, Integer>();
+
+       if (allRecords.isEmpty()) {
+           log.info("There are no authors of books");
+           return null;
+       }
+
+       for (AuthorBook authorBook : allRecords) {
+           Long authorId = authorBook.getAuthorId();
+
+           if(uniqueRecords.containsKey(authorId)){
+               int countOfBooks = uniqueRecords.get(authorId);
+               uniqueRecords.put(authorId, countOfBooks+1);
+           }
+
+           else {
+               uniqueRecords.put(authorId, 1);
+           }
+       }
+
+       Long theBestAuthor = 0L;
+       int bestResult = 0;
+
+       for (Map.Entry<Long, Integer> pair : uniqueRecords.entrySet()) {
+           Long key = pair.getKey();
+           int value = pair.getValue();
+
+           if (value >= bestResult){
+               theBestAuthor = key;
+               bestResult = value;
+           }
+       }
+
+        return theBestAuthor;
+   }
 }
