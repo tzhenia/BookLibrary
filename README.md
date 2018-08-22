@@ -131,3 +131,9 @@ Search
 
 GET: http://localhost:9931/api/v1/authors/older/25
 ***
+
+
+**Find out author which has most books**
+
+GET: http://localhost:9931/api/v1/authorbooks/find/out/author/which/has/most/books/
+***
