@@ -2,6 +2,9 @@ package com.tzhenia.bookLibrary.rest.version1;
 
 import com.tzhenia.bookLibrary.model.Book;
 import com.tzhenia.bookLibrary.service.BookService;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -11,12 +14,16 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 /**
  * REST controller for {@link Book} connected requests
  */
-
+@Getter
+@Setter
+@ToString
 @RestController
 @RequestMapping("/api/v1/books/")
 public class BookRestControllerV1 {
@@ -86,5 +93,17 @@ public class BookRestControllerV1 {
         }
 
         return new ResponseEntity<>(books, HttpStatus.OK);
+    }
+
+    @RequestMapping(value="calculate/number/of/books/by/genre/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<HashMap<String, Integer>> calculateNumberOfBooksByGenre() {
+
+        HashMap<String, Integer> booksGenre = this.bookService.calculateBookByGenre();
+
+        if (booksGenre.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(booksGenre, HttpStatus.OK);
     }
 }

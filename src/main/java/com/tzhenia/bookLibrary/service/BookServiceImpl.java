@@ -1,11 +1,13 @@
 package com.tzhenia.bookLibrary.service;
 
+import com.tzhenia.bookLibrary.model.AuthorBook;
 import lombok.extern.slf4j.Slf4j;
 import com.tzhenia.bookLibrary.model.Book;
 import com.tzhenia.bookLibrary.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -41,5 +43,27 @@ public class BookServiceImpl implements BookService {
     public List<Book> getAll() {
         log.info("IN BookServiceImpl getAll");
         return bookRepository.findAll();
+    }
+
+    @Override
+    public HashMap<String, Integer> calculateBookByGenre() {
+        log.info("IN BookServiceImpl calculateBookByGenre");
+
+        HashMap<String, Integer> resultRecords = new HashMap<>();
+        List<Book> allRecords = bookRepository.findAll();
+
+        for (Book book : allRecords) {
+           String genre = book.getGenre();
+
+            if(resultRecords.containsKey(genre)){
+                int countOfGenre = resultRecords.get(genre);
+                resultRecords.put(genre, countOfGenre+1);
+            }
+
+            else {
+                resultRecords.put(genre, 1);
+            }
+        }
+        return resultRecords;
     }
 }

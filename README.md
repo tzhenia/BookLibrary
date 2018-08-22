@@ -137,3 +137,9 @@ GET: http://localhost:9931/api/v1/authors/older/25
 
 GET: http://localhost:9931/api/v1/authorbooks/find/out/author/which/has/most/books/
 ***
+
+
+**Calculate number of books by genre**
+
+GET: http://localhost:9931/api/v1/authorbooks/calculate/number/of/books/by/genre/
+***

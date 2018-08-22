@@ -1,6 +1,8 @@
 package com.tzhenia.bookLibrary.service;
 
 import com.tzhenia.bookLibrary.model.Book;
+
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -16,4 +18,6 @@ public interface BookService {
     void delete(Long id);
 
     List<Book> getAll();
+
+    HashMap<String, Integer> calculateBookByGenre();
 }
