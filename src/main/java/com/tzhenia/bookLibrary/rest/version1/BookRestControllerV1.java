@@ -1,4 +1,4 @@
-package com.tzhenia.bookLibrary.rest;
+package com.tzhenia.bookLibrary.rest.version1;
 
 import com.tzhenia.bookLibrary.model.Book;
 import com.tzhenia.bookLibrary.service.BookService;
