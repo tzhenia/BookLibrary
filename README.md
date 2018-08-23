@@ -127,7 +127,7 @@ With body (application/json):
 Search
 -----------------------------------
 
-**To get all authors older than 25 years**
+**To get all authors older than ***N*** years**
 
 GET: http://localhost:9931/api/v1/authors/older/than/25
 ***
