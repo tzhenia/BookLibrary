@@ -1,6 +1,8 @@
 package com.tzhenia.bookLibrary.service;
 
 import com.tzhenia.bookLibrary.model.AuthorBook;
+
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -16,4 +18,6 @@ public interface AuthorBookService {
     void delete(Long id);
 
     List<AuthorBook> getAll();
+
+    HashMap<Long, Integer> calculateBookByAuthor();
 }

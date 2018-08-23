@@ -111,6 +111,24 @@ public class AuthorBookRestControllerV1 {
         return new ResponseEntity<>(author, HttpStatus.OK);
    }
 
+
+    @RequestMapping(value = "w", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<HashMap<Long, Integer>> calculateBooks() {
+
+        HashMap<Long, Integer> authorBooks = this.authorBookService.calculateBookByAuthor();
+
+        if (authorBooks.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(authorBooks, HttpStatus.OK);
+    }
+
+
+
+
+
+
    private Long calculateNumberOfBooksByAuthor(){
        log.info("IN AuthorBookRestControllerV1 calculateNumberOfBooksByAuthor");
 
