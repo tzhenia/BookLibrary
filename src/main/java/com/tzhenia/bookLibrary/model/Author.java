@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @ToString
-public class Author extends BaseEntity {
+public class Author extends BaseEntity  implements Comparable<Author> {
 
     @Column(name = "name")
     private String name;
@@ -27,4 +27,13 @@ public class Author extends BaseEntity {
 
     @Column(name = "born")
     private String born;
+
+
+    @Override
+    public int compareTo(Author author) {
+        if (getBorn() == null || author.getBorn() == null) {
+            return 0;
+        }
+        return getBorn().compareTo(author.getBorn());
+    }
 }

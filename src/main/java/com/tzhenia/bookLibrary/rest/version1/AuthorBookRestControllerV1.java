@@ -1,5 +1,8 @@
-package com.tzhenia.bookLibrary.rest;
+package com.tzhenia.bookLibrary.rest.version1;
 
+import com.tzhenia.bookLibrary.model.Author;
+import com.tzhenia.bookLibrary.repository.AuthorRepository;
+import lombok.extern.slf4j.Slf4j;
 import com.tzhenia.bookLibrary.model.AuthorBook;
 import com.tzhenia.bookLibrary.service.AuthorBookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,17 +15,22 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.HashMap;
 
 /**
  * REST controller for {@link AuthorBook} connected requests
  */
 
+@Slf4j
 @RestController
 @RequestMapping("/api/v1/authorbooks/")
 public class AuthorBookRestControllerV1 {
 
     @Autowired
     private AuthorBookService authorBookService;
+
+    @Autowired
+    AuthorRepository authorRepository;
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<AuthorBook> getAuthorBook(@PathVariable("id") Long authorBookId) {
@@ -80,6 +88,31 @@ public class AuthorBookRestControllerV1 {
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<List<AuthorBook>> getAllAuthorBooks() {
         List<AuthorBook> authorBooks = this.authorBookService.getAll();
+
+        if (authorBooks.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(authorBooks, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "find/out/author/which/has/most/books/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<Author> findOutAuthorWhichHasMostBooks() {
+
+        Author author = this.authorBookService.findTheBestAuthor();
+
+        if (author == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(author, HttpStatus.OK);
+    }
+
+
+    @RequestMapping(value = "calculate/number/of/books/by/author/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<HashMap<Long, Integer>> calculateBooks() {
+
+        HashMap<Long, Integer> authorBooks = this.authorBookService.calculateBookByAuthor();
 
         if (authorBooks.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

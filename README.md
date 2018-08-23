@@ -123,3 +123,35 @@ With body (application/json):
     "bookId": 31,
     "authorId": 31 
 }
+
+Search
+-----------------------------------
+
+**To get all authors older than 25 years**
+
+GET: http://localhost:9931/api/v1/authors/older/than/25
+***
+
+
+**Calculate number of books by genre**
+
+GET: http://localhost:9931/api/v1/books/calculate/number/of/books/by/genre/
+***
+
+
+**Calculate number of books by author**
+
+GET: http://localhost:9931/api/v1/authorbooks/calculate/number/of/books/by/author/
+***
+
+
+**Find out author which has most books**
+
+GET: http://localhost:9931/api/v1/authorbooks/find/out/author/which/has/most/books/
+***
+
+
+**Return books whose author has more than ***N*** written books**
+
+GET: http://localhost:9931/api/v1/books/return/books/whose/author/has/more/than/1/written/books/
+***
