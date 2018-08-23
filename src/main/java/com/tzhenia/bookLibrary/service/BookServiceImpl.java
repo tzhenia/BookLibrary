@@ -68,8 +68,27 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> returnBooks() {
+    public List<Book> returnBooks(int count) {
         log.info("IN BookServiceImpl returnBooks");
-        return bookRepository.findAll();
+
+        List<Book> allRecords = bookRepository.findAll();
+        HashMap<String, Integer> resultRecords = new HashMap<>();
+
+        int searchBooksByAuthor = 0;
+
+//        for (Book book : allRecords) {
+//            String genre = book.getGenre();
+//
+//            if(resultRecords.containsKey(genre)){
+//                int countOfGenre = resultRecords.get(genre);
+//                resultRecords.put(genre, countOfGenre+1);
+//            }
+//
+//            else {
+//                resultRecords.put(genre, 1);
+//            }
+//        }
+
+        return allRecords;
     }
 }

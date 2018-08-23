@@ -21,5 +21,5 @@ public interface BookService {
 
     HashMap<String, Integer> calculateBookByGenre();
 
-    List<Book> returnBooks();
+    List<Book> returnBooks(int count);
 }
