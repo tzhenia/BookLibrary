@@ -58,7 +58,7 @@ public class AuthorBookServiceImpl implements AuthorBookService {
         log.info("IN AuthorBookServiceImpl calculateBooks");
 
         List<AuthorBook> allRecords = this.authorBookService.getAll();
-        HashMap<Long, Integer> uniqueRecords = new HashMap<Long, Integer>();
+        HashMap<Long, Integer> uniqueRecords = new HashMap<>();
 
         if (allRecords.isEmpty()) {
             log.info("There are no authors of books");

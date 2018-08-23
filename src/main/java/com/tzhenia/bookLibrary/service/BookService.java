@@ -1,5 +1,6 @@
 package com.tzhenia.bookLibrary.service;
 
+import com.tzhenia.bookLibrary.model.AuthorBook;
 import com.tzhenia.bookLibrary.model.Book;
 
 import java.util.HashMap;
@@ -21,5 +22,5 @@ public interface BookService {
 
     HashMap<String, Integer> calculateBookByGenre();
 
-    List<Book> returnBooks(int count);
+    List<AuthorBook> returnBooks(int count);
 }

@@ -1,5 +1,6 @@
 package com.tzhenia.bookLibrary.rest.version1;
 
+import com.tzhenia.bookLibrary.model.AuthorBook;
 import com.tzhenia.bookLibrary.model.Book;
 import com.tzhenia.bookLibrary.service.BookService;
 import lombok.Getter;
@@ -108,14 +109,14 @@ public class BookRestControllerV1 {
 
 
     @RequestMapping(value="return/books/whose/author/has/more/than/{id}/written/books/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<List<Book>>returnBooksWhoseAuthorHasMoreThanNWrittenBooks(@PathVariable("id") int count) {
+    public ResponseEntity<List<AuthorBook>>returnBooksWhoseAuthorHasMoreThanNWrittenBooks(@PathVariable("id") int count) {
 
-        List<Book> books = this.bookService.returnBooks(count);
+        List<AuthorBook> authorBooks = this.bookService.returnBooks(count);
 
-        if (books.isEmpty()) {
+        if (authorBooks.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity<>(books, HttpStatus.OK);
+        return new ResponseEntity<>(authorBooks, HttpStatus.OK);
     }
 }
