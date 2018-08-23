@@ -106,4 +106,17 @@ public class BookRestControllerV1 {
 
         return new ResponseEntity<>(booksGenre, HttpStatus.OK);
     }
+
+
+    @RequestMapping(value="return/books/whose/author/has/more/than/{id}/written/books/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<List<Book>>returnBooksWhoseAuthorHasMoreThanNWrittenBooks(@PathVariable("id") int id) {
+
+        List<Book> books = this.bookService.getAll();
+
+        if (books.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(books, HttpStatus.OK);
+    }
 }

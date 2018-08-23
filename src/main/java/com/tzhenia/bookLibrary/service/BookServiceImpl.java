@@ -66,4 +66,10 @@ public class BookServiceImpl implements BookService {
         }
         return resultRecords;
     }
+
+    @Override
+    public List<Book> returnBooks() {
+        log.info("IN BookServiceImpl returnBooks");
+        return bookRepository.findAll();
+    }
 }

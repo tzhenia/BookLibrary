@@ -20,4 +20,6 @@ public interface BookService {
     List<Book> getAll();
 
     HashMap<String, Integer> calculateBookByGenre();
+
+    List<Book> returnBooks();
 }
