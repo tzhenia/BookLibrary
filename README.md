@@ -141,7 +141,7 @@ GET: http://localhost:9931/api/v1/authorbooks/find/out/author/which/has/most/boo
 
 **Calculate number of books by genre**
 
-GET: http://localhost:9931/api/v1/authorbooks/calculate/number/of/books/by/genre/
+GET: http://localhost:9931/api/v1/books/calculate/number/of/books/by/genre/
 ***
 
 
