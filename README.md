@@ -143,3 +143,9 @@ GET: http://localhost:9931/api/v1/authorbooks/find/out/author/which/has/most/boo
 
 GET: http://localhost:9931/api/v1/authorbooks/calculate/number/of/books/by/genre/
 ***
+
+
+**Return books whose author has more than ***N*** written books**
+
+GET: http://localhost:9931/api/v1/books/return/books/whose/author/has/more/than/***1***/written/books/
+***
