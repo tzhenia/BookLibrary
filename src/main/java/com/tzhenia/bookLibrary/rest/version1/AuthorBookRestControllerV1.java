@@ -112,7 +112,7 @@ public class AuthorBookRestControllerV1 {
    }
 
 
-    @RequestMapping(value = "w", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "calculate/number/of/books/by/author/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<HashMap<Long, Integer>> calculateBooks() {
 
         HashMap<Long, Integer> authorBooks = this.authorBookService.calculateBookByAuthor();
