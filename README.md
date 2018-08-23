@@ -129,7 +129,7 @@ Search
 
 **To get all authors older than 25 years**
 
-GET: http://localhost:9931/api/v1/authors/older/25
+GET: http://localhost:9931/api/v1/authors/older/than/25
 ***
 
 
