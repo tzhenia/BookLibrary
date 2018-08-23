@@ -1,5 +1,7 @@
 package com.tzhenia.bookLibrary.service;
 
+import com.tzhenia.bookLibrary.model.Author;
+import com.tzhenia.bookLibrary.repository.AuthorRepository;
 import lombok.extern.slf4j.Slf4j;
 import com.tzhenia.bookLibrary.model.AuthorBook;
 import com.tzhenia.bookLibrary.repository.AuthorBookRepository;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Implementations of {@link AuthorBookService} interface.
@@ -22,6 +25,9 @@ public class AuthorBookServiceImpl implements AuthorBookService {
 
     @Autowired
     private AuthorBookService authorBookService;
+
+    @Autowired
+    AuthorRepository authorRepository;
 
     @Override
     public AuthorBook getById(Long id) {
@@ -73,5 +79,28 @@ public class AuthorBookServiceImpl implements AuthorBookService {
         }
 
         return uniqueRecords;
+    }
+
+
+    @Override
+    public Author findTheBestAuthor() {
+        log.info("IN AuthorBookServiceImpl findTheBestAuthor");
+
+        HashMap<Long, Integer> uniqueRecords = calculateBookByAuthor();
+
+        Long theBestAuthor = 0L;
+        int bestResult = 0;
+
+        for (Map.Entry<Long, Integer> pair : uniqueRecords.entrySet()) {
+            Long key = pair.getKey();
+            int value = pair.getValue();
+
+            if (value >= bestResult){
+                theBestAuthor = key;
+                bestResult = value;
+            }
+        }
+
+        return authorRepository.findOne(theBestAuthor);
     }
 }

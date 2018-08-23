@@ -98,18 +98,16 @@ public class AuthorBookRestControllerV1 {
     }
 
     @RequestMapping(value = "find/out/author/which/has/most/books/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Author>  findOutAuthorWhichHasMostBooks() {
-        log.info("IN AuthorBookRestControllerV1 findOutAuthorWhichHasMostBooks");
+    public ResponseEntity<Author> findOutAuthorWhichHasMostBooks() {
 
-        Long authorID = calculateNumberOfBooksByAuthor();
-        Author author = authorRepository.findOne(authorID);
+        Author author = this.authorBookService.findTheBestAuthor();
 
         if (author == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
         return new ResponseEntity<>(author, HttpStatus.OK);
-   }
+    }
 
 
     @RequestMapping(value = "calculate/number/of/books/by/author/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -123,49 +121,4 @@ public class AuthorBookRestControllerV1 {
 
         return new ResponseEntity<>(authorBooks, HttpStatus.OK);
     }
-
-
-
-
-
-
-   private Long calculateNumberOfBooksByAuthor(){
-       log.info("IN AuthorBookRestControllerV1 calculateNumberOfBooksByAuthor");
-
-       List<AuthorBook> allRecords = this.authorBookService.getAll();
-       HashMap<Long, Integer> uniqueRecords = new HashMap<Long, Integer>();
-
-       if (allRecords.isEmpty()) {
-           log.info("There are no authors of books");
-           return null;
-       }
-
-       for (AuthorBook authorBook : allRecords) {
-           Long authorId = authorBook.getAuthorId();
-
-           if(uniqueRecords.containsKey(authorId)){
-               int countOfBooks = uniqueRecords.get(authorId);
-               uniqueRecords.put(authorId, countOfBooks+1);
-           }
-
-           else {
-               uniqueRecords.put(authorId, 1);
-           }
-       }
-
-       Long theBestAuthor = 0L;
-       int bestResult = 0;
-
-       for (Map.Entry<Long, Integer> pair : uniqueRecords.entrySet()) {
-           Long key = pair.getKey();
-           int value = pair.getValue();
-
-           if (value >= bestResult){
-               theBestAuthor = key;
-               bestResult = value;
-           }
-       }
-
-        return theBestAuthor;
-   }
 }

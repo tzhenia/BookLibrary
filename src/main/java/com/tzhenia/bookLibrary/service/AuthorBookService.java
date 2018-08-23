@@ -1,5 +1,6 @@
 package com.tzhenia.bookLibrary.service;
 
+import com.tzhenia.bookLibrary.model.Author;
 import com.tzhenia.bookLibrary.model.AuthorBook;
 
 import java.util.HashMap;
@@ -20,4 +21,6 @@ public interface AuthorBookService {
     List<AuthorBook> getAll();
 
     HashMap<Long, Integer> calculateBookByAuthor();
+
+    Author findTheBestAuthor();
 }
