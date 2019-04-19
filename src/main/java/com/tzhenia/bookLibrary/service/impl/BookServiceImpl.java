@@ -1,6 +1,9 @@
-package com.tzhenia.bookLibrary.service;
+package com.tzhenia.bookLibrary.service.impl;
 
 import com.tzhenia.bookLibrary.model.AuthorBook;
+import com.tzhenia.bookLibrary.model.enums.BookGenreList;
+import com.tzhenia.bookLibrary.service.AuthorBookService;
+import com.tzhenia.bookLibrary.service.BookService;
 import lombok.extern.slf4j.Slf4j;
 import com.tzhenia.bookLibrary.model.Book;
 import com.tzhenia.bookLibrary.repository.BookRepository;
@@ -10,8 +13,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import static java.lang.Math.toIntExact;
 
 /**
  * Implementations of {@link BookService} interface.

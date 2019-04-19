@@ -22,7 +22,14 @@ CREATE TABLE IF NOT EXISTS author_book (
 );
 
 
+CREATE TABLE IF NOT EXISTS books_genre(
+  id         BIGINT AUTO_INCREMENT PRIMARY KEY,
+  name       VARCHAR(50)   NOT NULL,
+);
+
+
 # Data structure:
 # ● Books (id, name, published, genre, rating)
+# ● BookGenre (id, name)
 # ● Authors (id, name, gender, born)
 # ● Book-Author (id, book-id, author-id)

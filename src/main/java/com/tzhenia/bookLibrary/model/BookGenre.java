@@ -9,25 +9,16 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
- * Simple JavaBean domain object that represents Books.
+ * Simple JavaBean domain object that represents Books Genre.
  */
 
 @Entity
-@Table(name = "books")
+@Table(name = "books_genre")
 @Getter
 @Setter
 @ToString
-public class Book extends BaseEntity {
+public class BookGenre extends BaseEntity {
 
     @Column(name = "name")
     private String name;
-
-    @Column(name = "genre")
-    private BookGenre genre;
-
-    @Column(name = "published")
-    private String published;
-
-    @Column(name = "rating")
-    private String rating;
 }
