@@ -23,7 +23,7 @@ public class Book extends BaseEntity {
     private String name;
 
     @Column(name = "genre")
-    private BookGenre genre;
+    private String genre;
 
     @Column(name = "published")
     private String published;

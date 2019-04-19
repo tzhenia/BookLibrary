@@ -89,12 +89,12 @@ Book Genre
 -----------------------------------
 **To get all genres of books list**
 
-GET: http://localhost:9931/api/v1/book/genre/ 
+GET: http://localhost:9931/api/v1/books/genre/ 
 ***
 
 **To get book genre by ID 1**
 
-GET: http://localhost:9931/api/v1/book/genre/1
+GET: http://localhost:9931/api/v1/books/genre/1
 
 AuthorBook
 -----------------------------------
