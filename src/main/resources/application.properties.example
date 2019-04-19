@@ -1,5 +1,5 @@
 spring.profiles.active=
-server.port=9966
+server.port=9931
 server.context-path=
 
 #spring.datasource.initialize=true
