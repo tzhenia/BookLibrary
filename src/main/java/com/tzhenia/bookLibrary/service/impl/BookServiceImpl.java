@@ -1,7 +1,7 @@
 package com.tzhenia.bookLibrary.service.impl;
 
 import com.tzhenia.bookLibrary.model.AuthorBook;
-import com.tzhenia.bookLibrary.model.enums.BookGenreList;
+import com.tzhenia.bookLibrary.model.BookGenre;
 import com.tzhenia.bookLibrary.service.AuthorBookService;
 import com.tzhenia.bookLibrary.service.BookService;
 import lombok.extern.slf4j.Slf4j;
@@ -9,7 +9,6 @@ import com.tzhenia.bookLibrary.model.Book;
 import com.tzhenia.bookLibrary.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -60,15 +59,15 @@ public class BookServiceImpl implements BookService {
         List<Book> allRecords = bookRepository.findAll();
 
         for (Book book : allRecords) {
-           String genre = book.getGenre();
+           BookGenre bookGenre = book.getBookGenre();
 
-            if(resultRecords.containsKey(genre)){
-                int countOfGenre = resultRecords.get(genre);
-                resultRecords.put(genre, countOfGenre+1);
+            if(resultRecords.containsKey(bookGenre)){
+                int countOfGenre = resultRecords.get(bookGenre);
+                resultRecords.put(bookGenre.toString(), countOfGenre+1);
             }
 
             else {
-                resultRecords.put(genre, 1);
+                resultRecords.put(bookGenre.toString(), 1);
             }
         }
         return resultRecords;
@@ -109,7 +108,7 @@ public class BookServiceImpl implements BookService {
             for(HashMap.Entry<Long, Integer> pairValid : ratingAuthorValid.entrySet())
             {
                 Long key = pairValid.getKey();
-                if (key.equals(pair.getAuthorId())){
+                if (key.equals(pair.getAuthor().getId())){
                     allAuthorBooksValid.add(pair);
                 }
             }

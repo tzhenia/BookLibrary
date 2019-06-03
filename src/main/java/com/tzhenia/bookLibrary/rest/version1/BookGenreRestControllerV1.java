@@ -2,9 +2,6 @@ package com.tzhenia.bookLibrary.rest.version1;
 
 import com.tzhenia.bookLibrary.model.BookGenre;
 import com.tzhenia.bookLibrary.service.BookGenreService;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,9 +13,6 @@ import java.util.List;
  * REST controller for {@link BookGenre} connected requests
  */
 
-@Getter
-@Setter
-@ToString
 @RestController
 @RequestMapping("/api/v1/books/genre/")
 public class BookGenreRestControllerV1 {

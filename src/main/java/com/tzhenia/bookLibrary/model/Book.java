@@ -4,16 +4,13 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Simple JavaBean domain object that represents Books.
  */
 
 @Entity
-@Table(name = "books")
 @Getter
 @Setter
 @ToString
@@ -22,8 +19,9 @@ public class Book extends BaseEntity {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "genre")
-    private String genre;
+    @ManyToOne
+    @JoinColumn(name = "bookGenre_id")
+    private BookGenre bookGenre;
 
     @Column(name = "published")
     private String published;

@@ -8,7 +8,6 @@ import com.tzhenia.bookLibrary.model.AuthorBook;
 import com.tzhenia.bookLibrary.repository.AuthorBookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,7 +66,7 @@ public class AuthorBookServiceImpl implements AuthorBookService {
         }
 
         for (AuthorBook authorBook : allRecords) {
-            Long authorId = authorBook.getAuthorId();
+            Long authorId = authorBook.getAuthor().getId();
 
             if(uniqueRecords.containsKey(authorId)){
                 int countOfBooks = uniqueRecords.get(authorId);

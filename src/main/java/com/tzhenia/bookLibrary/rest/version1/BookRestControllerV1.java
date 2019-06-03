@@ -3,9 +3,6 @@ package com.tzhenia.bookLibrary.rest.version1;
 import com.tzhenia.bookLibrary.model.AuthorBook;
 import com.tzhenia.bookLibrary.model.Book;
 import com.tzhenia.bookLibrary.service.BookService;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -21,9 +18,7 @@ import java.util.List;
 /**
  * REST controller for {@link Book} connected requests
  */
-@Getter
-@Setter
-@ToString
+
 @RestController
 @RequestMapping("/api/v1/books/")
 public class BookRestControllerV1 {

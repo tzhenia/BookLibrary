@@ -2,7 +2,6 @@ package com.tzhenia.bookLibrary.rest.version1;
 
 import com.tzhenia.bookLibrary.model.Author;
 import com.tzhenia.bookLibrary.repository.AuthorRepository;
-import lombok.extern.slf4j.Slf4j;
 import com.tzhenia.bookLibrary.model.AuthorBook;
 import com.tzhenia.bookLibrary.service.AuthorBookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ import java.util.HashMap;
  * REST controller for {@link AuthorBook} connected requests
  */
 
-@Slf4j
+
 @RestController
 @RequestMapping("/api/v1/authorbooks/")
 public class AuthorBookRestControllerV1 {
