@@ -1,3 +1,4 @@
+INSERT INTO `book_genre` VALUES (1, 'Technical');
 INSERT INTO `book_genre` VALUES (2, 'Education');
 INSERT INTO `book_genre` VALUES (3, 'Historical');
 INSERT INTO `book_genre` VALUES (4, 'Fantasy');
